@@ -1,5 +1,6 @@
 appId: com.electron.app
 productName: Content Control
+copyright: Copyright © 2023 ${author}
 directories:
   buildResources: build
 files:
@@ -28,11 +29,12 @@ mac:
 dmg:
   artifactName: ${name}-${version}.${ext}
 linux:
+  description: 'This application is made for nrf demo"
   target:
     - AppImage
     - snap
     - deb
-  maintainer: electronjs.org
+  maintainer: kore.ai
   category: Utility
 appImage:
   artifactName: ${name}-${version}.${ext}

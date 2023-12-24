@@ -1,12 +1,24 @@
 import { app, shell, BrowserWindow, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import icon from '../../resources/icon.png?asset'
+import linIcon from '../../resources/icon.png?asset'
+import winIcon from '../../resources/icon.ico?asset'
+import macIcon from '../../resources/icon.icns?asset'
 import initSocketServer from './websocketServer'
 import logger from 'electron-log/main'
 import { getPort } from 'get-port-please'
 
 logger.initialize()
+
+let icon = null
+if (process.platform === 'darwin') {
+  icon = macIcon
+} else if (process.platform === 'linux') {
+  icon = linIcon
+} else {
+  icon = winIcon
+}
+console.log(icon)
 
 function createWindow() {
   // Create a window that fills the screen's available work area.

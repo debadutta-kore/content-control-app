@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "This application made for ",
   "main": "./out/main/index.js",
-  "author": "debadutta",
-  "homepage": "https://kore.com",
+  "author": "kore.ai",
+  "homepage": "https://kore.ai",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
