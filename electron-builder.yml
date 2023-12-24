@@ -29,7 +29,7 @@ mac:
 dmg:
   artifactName: ${name}-${version}.${ext}
 linux:
-  description: This application is made for nrf demo
+  description: This application is made for NRF demo
   target:
     - AppImage
     - snap
