@@ -10,6 +10,10 @@ import { getPort } from 'get-port-please'
 
 logger.initialize()
 
+/**
+ * @type {import('http').Server}
+ */
+let server = null
 let icon = null
 if (process.platform === 'darwin') {
   icon = macIcon
@@ -18,12 +22,23 @@ if (process.platform === 'darwin') {
 } else {
   icon = winIcon
 }
-console.log(icon)
 
 function createWindow() {
-  // Create a window that fills the screen's available work area.
+  // get device primary display
   const primaryDisplay = screen.getPrimaryDisplay()
+  // get device default height and width of primary display
   const { width, height } = primaryDisplay.workAreaSize
+  // initialize a socket server only once at any random port
+  if (!server && BrowserWindow.getAllWindows().length === 0) {
+    getPort()
+      .then((port) => {
+        server = initSocketServer(port)
+      })
+      .catch((err) => {
+        logger.error("can't find any port to run", err)
+      })
+  }
+  // Create a window that fills the screen's available work area.
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width,
@@ -45,6 +60,20 @@ function createWindow() {
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }
+  })
+
+  mainWindow.on('closed', () => {
+    // if All window closed then close the server
+    if (server && BrowserWindow.getAllWindows().length === 0) {
+      server.close((err) => {
+        if (!err) {
+          logger.log('Server closed successfully')
+        } else {
+          logger.error('on close server error', err)
+        }
+      })
+      server = null
+    }
   })
 
   // HMR for renderer base on electron-vite cli.
@@ -90,12 +119,3 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
-
-// initialize a websocket at any random
-getPort()
-  .then((port) => {
-    initSocketServer(port)
-  })
-  .catch((err) => {
-    logger.error("can't find any port to run", err)
-  })

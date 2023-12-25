@@ -3,6 +3,11 @@ import { Server } from 'socket.io'
 import http from 'http'
 import logger from 'electron-log/main'
 
+/**
+ *
+ * @param {number} port
+ * @returns {import('http').Server}
+ */
 export default function initSocketServer(port = 8080) {
   // initialize websocket server
   const server = http.createServer({ keepAlive: true })
@@ -60,4 +65,6 @@ export default function initSocketServer(port = 8080) {
   })
 
   server.listen(port)
+
+  return server
 }
