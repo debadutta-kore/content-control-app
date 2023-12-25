@@ -14,6 +14,9 @@ logger.initialize()
  * @type {import('http').Server}
  */
 let server = null
+/**
+ * @type {string}
+ */
 let icon = null
 if (process.platform === 'darwin') {
   icon = macIcon
