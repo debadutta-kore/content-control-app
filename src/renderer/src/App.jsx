@@ -1,12 +1,12 @@
 import Carousel from 'react-bootstrap/Carousel'
 import { useEffect, useState } from 'react'
 
-import food1 from './assets/food1.jpeg'
-import food2 from './assets/food2.jpeg'
-import food3 from './assets/food3.jpeg'
+import slideDisplayImg from './assets/slide-display.png'
+import slideQrImg from './assets/slide-qr.png'
 import menuImage from './assets/menu.png'
 import Slide from './components/slide'
-import { Image } from 'react-bootstrap'
+import Fade from 'react-bootstrap/Fade'
+import Image from 'react-bootstrap/Image'
 import { io } from 'socket.io-client'
 
 const socket = io('wss://nrfdemo-foodassist.loca.lt', {
@@ -27,7 +27,7 @@ function App() {
       } else {
         timeoutId = setTimeout(() => {
           setShowMenu(false)
-        }, 5 * 1000)
+        }, 30 * 1000)
       }
     }
 
@@ -39,8 +39,8 @@ function App() {
       console.log('*** socket closed ***')
     }
 
-    const onError = () => {
-      console.log('*** socket error ***')
+    const onError = (err) => {
+      console.log('*** socket error ***', err)
     }
 
     socket.on('disconnect', onClose)
@@ -54,22 +54,31 @@ function App() {
       socket.off('connect_error', onError)
     }
   }, [])
-  return !showMenu ? (
-    <Carousel controls={false} indicators={false} pause="hover">
-      <Carousel.Item>
-        <Slide src={food1} />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Slide src={food2} />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Slide src={food3} />
-      </Carousel.Item>
-    </Carousel>
-  ) : (
-    <div className="d-flex w-100" style={{ height: '100vh' }}>
-      <Image src={menuImage} alt="foodassist-menu" className="m-auto mw-100 h-100" />
-    </div>
+  return (
+    <>
+      {!showMenu && (
+        <Carousel
+          controls={false}
+          indicators={false}
+          pause={false}
+          slide={false}
+          fade
+          interval={30 * 1000}
+        >
+          <Carousel.Item className="d-flex img-container">
+            <Slide src={slideDisplayImg} />
+          </Carousel.Item>
+          <Carousel.Item className="d-flex img-container">
+            <Slide src={slideQrImg} />
+          </Carousel.Item>
+        </Carousel>
+      )}
+      <Fade timeout={5000} in={showMenu} mountOnEnter unmountOnExit>
+        <div className="d-flex img-container">
+          <Image src={menuImage} alt="foodassist-menu" className="m-auto mw-100 h-100" />
+        </div>
+      </Fade>
+    </>
   )
 }
 
