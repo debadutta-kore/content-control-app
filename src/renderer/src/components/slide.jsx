@@ -5,7 +5,7 @@ function Slide(props) {
     <img
       src={props.src}
       alt={'image-' + imageId}
-      className="m-auto d-block"
+      className="m-auto d-block w-100"
       style={{ height: '100vh' }}
     />
   )

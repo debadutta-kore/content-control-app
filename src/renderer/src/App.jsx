@@ -75,7 +75,7 @@ function App() {
       )}
       <Fade timeout={5000} in={showMenu} mountOnEnter unmountOnExit>
         <div className="d-flex img-container">
-          <Image src={menuImage} alt="foodassist-menu" className="m-auto mw-100 h-100" />
+          <Image src={menuImage} alt="foodassist-menu" className="m-auto w-100 h-100" />
         </div>
       </Fade>
     </>

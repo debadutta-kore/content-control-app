@@ -49,7 +49,6 @@ function createWindow() {
     icon,
     show: false,
     autoHideMenuBar: true,
-    title: 'Content Control',
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
