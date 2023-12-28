@@ -1,7 +1,7 @@
 {
   "name": "content-control",
   "version": "1.0.0",
-  "description": "This application made for ",
+  "description": "This application made for NRF Demo for foodassist",
   "main": "./out/main/index.js",
   "author": "kore.ai",
   "homepage": "https://kore.ai",
@@ -14,7 +14,8 @@
     "postinstall": "electron-builder install-app-deps",
     "build:win": "npm run build && electron-builder --win --config",
     "build:mac": "npm run build && electron-builder --mac --config",
-    "build:linux": "npm run build && electron-builder --linux --config"
+    "build:linux": "npm run build && electron-builder --linux --config",
+    "release": "electron-builder"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^2.0.0",

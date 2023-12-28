@@ -1,4 +1,5 @@
-appId: com.electron.app
+appId: com.foodassist.app
+asar: true
 productName: Content Control
 copyright: Copyright © 2023 ${author}
 directories:
@@ -12,6 +13,7 @@ files:
 asarUnpack:
   - resources/**
 win:
+  publisherName: Kore
   executableName: Content Control
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
@@ -32,10 +34,11 @@ linux:
   description: This application is made for NRF demo
   target:
     - AppImage
-    - snap
     - deb
   maintainer: kore.ai
   category: Utility
 appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false
+publish:
+  provider: github
