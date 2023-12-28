@@ -1,7 +1,7 @@
 import Carousel from 'react-bootstrap/Carousel'
 import { useEffect, useState } from 'react'
 
-import slideDisplayImg from './assets/slide-display.png'
+import slideDisplayImg from './assets/slide-branding.png'
 import slideQrImg from './assets/slide-qr.png'
 import menuImage from './assets/menu.png'
 import Slide from './components/slide'
