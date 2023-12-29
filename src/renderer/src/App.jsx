@@ -21,10 +21,10 @@ function App() {
     let timeoutId
     const onMessage = (msg) => {
       console.log(msg)
-      if (msg === 'start') {
+      if (msg === 'ShowMenu') {
         clearTimeout(timeoutId)
         setShowMenu(true)
-      } else {
+      } else if(msg === 'CloseMenu') {
         timeoutId = setTimeout(() => {
           setShowMenu(false)
         }, 30 * 1000)
