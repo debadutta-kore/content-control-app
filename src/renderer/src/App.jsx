@@ -24,7 +24,7 @@ function App() {
       if (msg === 'ShowMenu') {
         clearTimeout(timeoutId)
         setShowMenu(true)
-      } else if(msg === 'CloseMenu') {
+      } else if (msg === 'CloseMenu') {
         timeoutId = setTimeout(() => {
           setShowMenu(false)
         }, 30 * 1000)
