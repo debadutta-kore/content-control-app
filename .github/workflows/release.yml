@@ -2,8 +2,10 @@ name: Build/release Electron app
 
 on:
   push:
-    tags:
-      - v1.0.0
+    branches:
+     - main
+
+permissions: write-all
 
 jobs:
   release:
@@ -53,4 +55,4 @@ jobs:
             dist/*.yml
             dist/*.blockmap
         env:
-          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
