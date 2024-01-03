@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 
 import slideDisplayImg from './assets/slide-branding.png'
 import slideQrImg from './assets/slide-qr.png'
+import slideSalad from './assets/slide-salad.png'
+import slideMomo from './assets/slide-momo.png'
 import menuImage from './assets/menu.png'
 import Slide from './components/slide'
 import Fade from 'react-bootstrap/Fade'
@@ -70,6 +72,12 @@ function App() {
           </Carousel.Item>
           <Carousel.Item className="d-flex img-container">
             <Slide src={slideQrImg} />
+          </Carousel.Item>
+          <Carousel.Item className="d-flex img-container">
+            <Slide src={slideSalad} />
+          </Carousel.Item>
+          <Carousel.Item className="d-flex img-container">
+            <Slide src={slideMomo} />
           </Carousel.Item>
         </Carousel>
       )}
