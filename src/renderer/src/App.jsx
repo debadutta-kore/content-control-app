@@ -1,15 +1,16 @@
 import Carousel from 'react-bootstrap/Carousel'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import Fade from 'react-bootstrap/Fade'
+import Image from 'react-bootstrap/Image'
+import Slide from './components/slide'
+import { io } from 'socket.io-client'
 
 import slideDisplayImg from './assets/slide-branding.png'
 import slideQrImg from './assets/slide-qr.png'
 import slideSalad from './assets/slide-salad.png'
 import slideMomo from './assets/slide-momo.png'
 import menuImage from './assets/menu.png'
-import Slide from './components/slide'
-import Fade from 'react-bootstrap/Fade'
-import Image from 'react-bootstrap/Image'
-import { io } from 'socket.io-client'
+import thankyouImg from './assets/img-thankyou.png'
 
 const socket = io('wss://nrfdemo-foodassist.loca.lt', {
   transports: ['websocket'],
@@ -19,14 +20,19 @@ const socket = io('wss://nrfdemo-foodassist.loca.lt', {
 
 function App() {
   const [showMenu, setShowMenu] = useState(false)
+  const ref = useRef(null)
+
   useEffect(() => {
     let timeoutId
     const onMessage = (msg) => {
-      console.log(msg)
       if (msg === 'ShowMenu') {
         clearTimeout(timeoutId)
         setShowMenu(true)
+        ref.current.src = menuImage
+        ref.current.alt = 'foodassist-menu'
       } else if (msg === 'CloseMenu') {
+        ref.current.src = thankyouImg
+        ref.current.alt = 'thankyou'
         timeoutId = setTimeout(() => {
           setShowMenu(false)
         }, 30 * 1000)
@@ -83,7 +89,7 @@ function App() {
       )}
       <Fade timeout={5000} in={showMenu} mountOnEnter unmountOnExit>
         <div className="d-flex img-container">
-          <Image src={menuImage} alt="foodassist-menu" className="m-auto w-100 h-100" />
+          <Image src={menuImage} alt="foodassist-menu" className="m-auto w-100 h-100" ref={ref} />
         </div>
       </Fade>
     </>
