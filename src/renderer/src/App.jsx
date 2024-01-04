@@ -33,6 +33,7 @@ function App() {
           ref.current.alt = 'foodassist-menu'
         }
       } else if (msg === 'CloseMenu') {
+        // check if the image is previously render or not
         if (ref && ref.current) {
           ref.current.src = thankyouImg
           ref.current.alt = 'thankyou'
