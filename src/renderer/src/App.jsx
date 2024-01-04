@@ -36,10 +36,10 @@ function App() {
         if (ref && ref.current) {
           ref.current.src = thankyouImg
           ref.current.alt = 'thankyou'
+          timeoutId = setTimeout(() => {
+            setShowMenu(false)
+          }, 30 * 1000)
         }
-        timeoutId = setTimeout(() => {
-          setShowMenu(false)
-        }, 30 * 1000)
       }
     }
 
