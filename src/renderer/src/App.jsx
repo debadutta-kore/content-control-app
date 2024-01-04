@@ -28,11 +28,15 @@ function App() {
       if (msg === 'ShowMenu') {
         clearTimeout(timeoutId)
         setShowMenu(true)
-        ref.current.src = menuImage
-        ref.current.alt = 'foodassist-menu'
+        if (ref && ref.current) {
+          ref.current.src = menuImage
+          ref.current.alt = 'foodassist-menu'
+        }
       } else if (msg === 'CloseMenu') {
-        ref.current.src = thankyouImg
-        ref.current.alt = 'thankyou'
+        if (ref && ref.current) {
+          ref.current.src = thankyouImg
+          ref.current.alt = 'thankyou'
+        }
         timeoutId = setTimeout(() => {
           setShowMenu(false)
         }, 30 * 1000)
