@@ -11,7 +11,7 @@ import slideSalad from './assets/slide-salad.png'
 import slideMomo from './assets/slide-momo.png'
 import slidePizza from './assets/slide-pizza.jpg'
 import slideMultiPizza from './assets/slide-multipizza.jpg'
-import slideFoods from './assets/slide-foods.jpg'
+import slideFoods from './assets/slide-foods.png'
 import menuImage from './assets/menu.png'
 import thankyouImg from './assets/img-thankyou.png'
 
